@@ -1,0 +1,17 @@
+
+PSOPT results summary
+=====================
+
+Problem: 					Time-Optimal Trajectory Generation Problem
+CPU time (seconds):				2.380268e+01
+NLP solver used: 				IPOPT
+PSOPT release number: 				4.0.1
+Date and time of this run: 			Mon Jul 15 16:09:35 2019
+
+Optimal (unscaled) cost function value: 	5.194821e+00
+Phase 1 endpoint cost function value:		4.632463e+00
+Phase 1 integrated part of the cost: 		5.623580e-01
+Phase 1 initial time:				0.000000e+00
+Phase 1 final time:				4.632463e+00
+Phase 1 maximum relative local error:		1.674257e-04
+NLP solver reports: 				The problem has been solved!

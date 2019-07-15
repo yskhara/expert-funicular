@@ -1,0 +1,16 @@
+
+\begin{table}
+\caption{Mesh refinement statistics: Time-Optimal Trajectory Generation Problem}
+\label{mesh_stats_traj}
+\renewcommand{\tabcolsep}{0.15cm}
+\tiny
+\begin{tabular}{llllllllllll}
+Iter&DM&M&NV&NC&OE&CE&JE&HE&RHS&$\epsilon_{\max}$&CPU$_\mathrm{a}$ \\ \hline \\
+1&LGL-ST&100&702&711&68&68&68&0&6800&1.674e-04&1.012e+01\\
+\hline
+CPU$_\mathrm{b}$ &-&-&-&-&-&-&-&-&-&-&1.368e+01\\
+-&-&-&-&-&68&68&68&0&6800&-&2.380e+01\\
+\end{tabular}
+\newline \\ \emph{Key}: Iter=iteration number, DM= discretization method, M=number of nodes, NV=number of variables, NC=number of constraints, OE=objective evaluations,  	              CE = constraint evaluations, JE = Jacobian evaluations, HE = Hessian evaluations, RHS = ODE right hand side 		      evaluations, $\epsilon_{\max}$ = maximum relative ODE error, CPU$_\mathrm{a}$ = CPU time in seconds spent by NLP algorithm, 		      CPU$_\mathrm{b}$ = additional CPU time in seconds spent by PSOPT
+\normalsize
+\end{table}
