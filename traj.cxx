@@ -17,6 +17,7 @@
 //////////////////////////////////////////////////////////////////////////
 
 #include "psopt.h"
+#include <GLFW/glfw3.h>
 
 //////////////////////////////////////////////////////////////////////////
 ///////////////////  Define the end point (Mayer) cost function //////////
@@ -37,7 +38,7 @@ adouble integrand_cost(adouble* states, adouble* controls, adouble* parameters, 
 {
     double w = 1.0;
 
-    return w * (pow(controls[CINDEX(1)], 2) + pow(controls[CINDEX(2)], 2));
+    return 0;//w * (pow(controls[CINDEX(1)], 2) + pow(controls[CINDEX(2)], 2));
 }
 
 //////////////////////////////////////////////////////////////////////////
@@ -264,6 +265,7 @@ int main(void)
 ///////////////////  Now call PSOPT to solve the problem   /////////////////
 ////////////////////////////////////////////////////////////////////////////
 
+#if 0
     psopt(solution, problem, algorithm);
 
     if (solution.error_flag) exit(0);
@@ -308,6 +310,60 @@ int main(void)
 
     plot(t, u, problem.name + ": control", "time (s)", "control", "u1 u2", "pdf", "lts_control.pdf");
 
+#endif
+    ////////////////////////////////////////////////////////////////////////////////
+      // GLFW の初期化 (GLFW)
+      if (glfwInit() == GL_FALSE){
+        // 初期化に失敗した処理
+        std::cerr << "Can't initialize GLFW" << std::endl;
+        return 1;
+      }
+
+
+      ////////////////////////////////////////////////////////////////////////////////
+      // 終了時の処理登録 (GLFW)
+      atexit(glfwTerminate);
+
+
+      ////////////////////////////////////////////////////////////////////////////////
+      // ウィンドウを作成 (GLFW)
+      GLFWwindow * const window(glfwCreateWindow(/* int           width   = */ 640,
+                                                 /* int           height  = */ 480,
+                                                 /* const char  * title   = */ "Hello!",
+                                                 /* GLFWmonitor * monitor = */ NULL,
+                                                 /* GLFWwindow  * share   = */ NULL));
+      if (window == NULL){
+        // ウィンドウ作成に失敗した処理
+        std::cerr << "Can't create GLFW window." << std::endl;
+        return 1;
+      }
+
+      // 作成したウィンドウを処理対象とする (GLFW)
+      glfwMakeContextCurrent(/* GLFWwindow *  window = */ window);
+
+      // 背景色 (OpenGL)
+      glClearColor(/* GLfloat red   = */ 0.2f,
+                   /* GLfloat green = */ 0.2f,
+                   /* GLfloat blue  = */ 0.2f,
+                   /* GLfloat alpha = */ 0.0f);
+
+
+      ////////////////////////////////////////////////////////////////////////////////
+      // ループ処理
+
+      // ウィンドウが開いている間繰り返す
+      while (glfwWindowShouldClose(/* GLFWwindow * window = */ window) == GL_FALSE){
+        // ウィンドウを消去 (GLFW)
+        glClear(/* GLbitfield mask = */ GL_COLOR_BUFFER_BIT);
+
+        // 描画処理
+
+        // カラーバッファ入れ替え <= ダブルバッファリング (GLFW)
+        glfwSwapBuffers(window);
+
+        // イベント待ち (GLFW)
+        glfwWaitEvents();
+      }
 }
 
 ////////////////////////////////////////////////////////////////////////////
